@@ -4,17 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class MessageEvent : UnityEvent
+public class MessageEvent : UnityEvent<string>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
