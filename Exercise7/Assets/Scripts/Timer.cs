@@ -56,7 +56,26 @@ public class Timer : MonoBehaviour
 	public bool Running
     {
 		get { return running; }
-	}
+    }
+
+    /// <summary>
+    /// Gets ho wmany seconds are left on the timer
+    /// </summary>
+    /// <value>seconds left</value>
+    public float SecondsLeft
+    {
+        get
+        {
+            if (running)
+            {
+                return totalSeconds - elapsedSeconds;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
 
     #endregion
 
@@ -94,7 +113,25 @@ public class Timer : MonoBehaviour
 			running = true;
             elapsedSeconds = 0;
 		}
-	}
-	
-	#endregion
+    }
+
+    /// <summary>
+    /// Stops the timer
+    /// </summary>
+    public void Stop()
+    {
+        started = false;
+        running = false;
+    }
+
+    /// <summary>
+    /// Adds the given number of seconds to the timer
+    /// </summary>
+    /// <param name="seconds">time to add</param>
+    public void AddTime(float seconds)
+    {
+        totalSeconds += seconds;
+    }
+
+    #endregion
 }

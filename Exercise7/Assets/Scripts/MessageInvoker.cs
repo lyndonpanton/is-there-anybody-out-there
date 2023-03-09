@@ -6,12 +6,19 @@ using UnityEngine.Events;
 public class MessageInvoker : MonoBehaviour
 {
     Timer timer;
+    MessageEvent messageEvent;
 
-    MessageEvent messageEvent = new MessageEvent();
+    void Awake()
+    {
+        messageEvent = new MessageEvent();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-
+        timer = gameObject.AddComponent<Timer>();
+        timer.Duration = 1;
+        timer.Run();
     }
 
     // Update is called once per frame
@@ -19,23 +26,14 @@ public class MessageInvoker : MonoBehaviour
     {
         if (timer.Finished)
         {
-            timer.Duration = 1;
+            messageEvent.Invoke();
             timer.Run();
-            //AddNoArguementListener(messageEvent);
         }
     }
 
-    void Awake()
+
+    public void AddNoArgumentListener(UnityAction listener)
     {
-        timer = new Timer();
-        timer.Duration = 1;
-        timer.Run();
-    }
-
-
-
-    public void AddNoArguementListener(UnityAction listener)
-    {
-        //messageEvent.AddListener(listener);
+        messageEvent.AddListener(listener);
     }
 }
